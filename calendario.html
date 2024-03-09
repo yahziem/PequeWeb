@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Eventos</title>
+    <link rel="stylesheet" href="calendario.css">
+</head>
+<body>
+    <div class="logo">
+        <img src="logo.ico" alt="Logo">
+      <nav>
+          <ul>
+              <li><a href="galeria.html">Galería</a></li>
+              <li><a href="inicio.html">Inicio</a></li>
+              <li><a href="Canciones.html">Canciones</a></li>
+              <li><a href="Notas.html">Notas</a></li>
+              <li><a href="Preguntas.html">Preguntas</a></li>
+              <li><a href="calendario.html">Calendario</a></li>
+          </ul>
+      </nav>
+    <div class="calendar">
+        <div class="header">
+            <button id="prevMonth">&lt;</button>
+            <h2 id="monthYear">Marzo 2024</h2>
+            <button id="nextMonth">&gt;</button>
+        </div>
+        <div class="days"></div>
+    </div>
+
+    <div class="event-form">
+        <h3>Agregar Evento</h3>
+        <input type="date" id="eventDate">
+        <input type="text" id="eventName" placeholder="Nombre del Evento">
+        <button id="addEvent">Agregar</button>
+    </div>
+
+    <div class="event-list">
+        <h3>Eventos Agregados</h3>
+        <ul id="eventList"></ul>
+    </div>
+
+    <script src="Gl/JS/calendario.js"></script>
+</body>
+</html>
+

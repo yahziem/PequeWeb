@@ -21,6 +21,8 @@ const imageUrls = [
     'https://yahzi.000webhostapp.com/Gl/fotos/17.jfif',
     'https://yahzi.000webhostapp.com/Gl/fotos/18.jfif',
     'https://yahzi.000webhostapp.com/Gl/fotos/19.jfif',
+    'https://yahzi.000webhostapp.com/Gl/fotos/20.jfif',
+    'https://yahzi.000webhostapp.com/Gl/fotos/21.jfif',
     // Agrega más URL de imágenes según sea necesario
 ];
 

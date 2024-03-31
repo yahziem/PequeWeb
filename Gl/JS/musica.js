@@ -34,7 +34,7 @@ const imageUrls = [
     'https://yahzi.000webhostapp.com/Gl/Canciones/31.png',
     'https://yahzi.000webhostapp.com/Gl/Canciones/32.png',
     'https://yahzi.000webhostapp.com/Gl/Canciones/33.png',
-
+    'https://yahzi.000webhostapp.com/Gl/Canciones/34.png',
     // Agrega más rutas de imágenes locales según sea necesario
 ];
 

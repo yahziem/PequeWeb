@@ -47,8 +47,8 @@ function createGalleryItem(url) {
     img.alt = url; // Cambiado para mostrar la URL de la imagen en caso de que el enlace esté roto
 
     // Establecer un tamaño fijo para todas las imágenes
-    img.style.width = '300px';
-    img.style.height = '300px';
+    img.style.width = '500px';
+    img.style.height = '500px';
     img.style.objectFit = 'cover'; // Ajuste para que la imagen se ajuste correctamente al tamaño definido
 
     // Agregar evento de clic para agrandar la imagen

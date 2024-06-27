@@ -2,9 +2,9 @@ const galleryContainer = document.getElementById('galleryContainer');
 
 // Puedes reemplazar estas URL con las de tus propias imágenes
 const imageUrls = [
-    'https://yahzi.000webhostapp.com/Gl/Inicio/flor1.jpg',
-    'https://yahzi.000webhostapp.com/Gl/Inicio/flor2.jpg',
-    'https://yahzi.000webhostapp.com/Gl/Inicio/flor3.jpg',
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor1.jpg',
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor2.jpg',
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor3.jpg',
     // Agrega más URL de imágenes según sea necesario
 ];
 

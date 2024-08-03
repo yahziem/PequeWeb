@@ -3,7 +3,6 @@ const galleryContainer = document.getElementById('galleryContainer');
 // Puedes reemplazar estas URL con las de tus propias imágenes
 const imageUrls = [
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/27.jfif',
-    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/22.jfif',
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/29.jfif ',
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/1.jfif',
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/2.jfif',    

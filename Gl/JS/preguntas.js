@@ -39,6 +39,11 @@ const questions = [
     choices: ["La comida","Manejar de noche", "Tus abrazos."],
     correctAnswer: "Tus abrazos."
   },
+  {
+    question: "¿Nos casamos? ",
+    choices: ["si","si", "tal vez"],
+    correctAnswer: "si"
+  },
 ];
 
 let currentQuestion = 0;

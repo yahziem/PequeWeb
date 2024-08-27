@@ -34,6 +34,14 @@ const imageUrls = [
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/31.jfif ', 
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/32.jfif ', 
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/33.jfif ', 
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/34.jfif ', 
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/35.jfif ', 
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/36.jfif ', 
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/37.jfif ', 
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/38.jfif ', 
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/39.jfif ', 
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/40.jfif ', 
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/41.jfif ', 
     // Agrega más URL de imágenes según sea necesario
 ];
 

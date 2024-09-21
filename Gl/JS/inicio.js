@@ -5,6 +5,7 @@ const imageUrls = [
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor1.jpg',
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor2.jpg',
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor3.jpg',
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor4.jpg',
     // Agrega más URL de imágenes según sea necesario
 ];
 

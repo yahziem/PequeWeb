@@ -1,6 +1,5 @@
 const galleryContainer = document.getElementById('galleryContainer');
-
-// Puedes reemplazar estas URL con las de tus propias imágenes
+// URLs de las imágenes
 const imageUrls = [
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/27.jfif',
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/29.jfif ',
@@ -54,22 +53,37 @@ function createGalleryItem(url) {
 
     const img = document.createElement('img');
     img.src = url;
-    img.alt = url; // Cambiado para mostrar la URL de la imagen en caso de que el enlace esté roto
+    img.alt = 'Imagen no disponible';
 
-    // Establecer un tamaño fijo para todas las imágenes
-    img.style.width = '300px';
-    img.style.height = '300px';
-    img.style.objectFit = 'cover'; // Ajuste para que la imagen se ajuste correctamente al tamaño definido
+    // Imagen de reserva en caso de error
+    img.onerror = () => {
+        img.src = 'https://via.placeholder.com/300?text=Error';
+        img.alt = 'Error al cargar la imagen';
+    };
 
-    // Agregar evento de clic para agrandar la imagen
+    // Evento de clic para agrandar la imagen
     imgContainer.addEventListener('click', () => {
-        imgContainer.classList.toggle('enlarged');
+        openImage(imgContainer);
+    });
+
+    // Botón de cerrar
+    const closeButton = document.createElement('imagen');
+    closeButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeImage(imgContainer);
     });
 
     imgContainer.appendChild(img);
     item.appendChild(imgContainer);
     galleryContainer.appendChild(item);
 }
-
-// Crear elementos de la galería para cada URL de imagen
+// Crear elementos de la galería
 imageUrls.forEach(url => createGalleryItem(url));
+
+// Cerrar al hacer clic fuera de la imagen
+document.addEventListener('click', (e) => {
+    const enlargedImg = document.querySelector('.img-container.enlarged');
+    if (enlargedImg && !enlargedImg.contains(e.target)) {
+        closeImage(enlargedImg);
+    }
+});

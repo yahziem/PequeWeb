@@ -33,14 +33,30 @@ nav ul li a {
   color: #fff;
   font-weight: bold;
 }
+
 .gallery-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center; /* Centra los elementos de la galería */
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
+  background-color: #491c4b77;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .gallery-item {
-  margin: 5px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: rgb(41, 114, 124);
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 .img-container {
@@ -48,15 +64,28 @@ nav ul li a {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  width: 100%;
-  height: 100%;
+  width: 300px;
+  height: 300px;
+  cursor: pointer;
 }
 
 .img-container img {
   max-width: 100%;
   max-height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
+.img-container.enlarged {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.5);
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+}
 
 .img-container.enlarged img {
   position: fixed;
@@ -70,30 +99,15 @@ nav ul li a {
   z-index: 99;
 }
 
-/* Efecto de zoom al pasar el ratón sobre la imagen */
 .gallery-item:hover img {
   transform: scale(1.2);
 }
 
-/* Estilo del botón de salida */
-.exit-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background-color: rgba(0, 0, 0, 0.8);
-  border: none;
-  padding: 5px 10px;
-  font-size: 16px;
-  cursor: pointer;
-  z-index: 1;
-}
-
-/* Contenedor */
 .contenedor {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap; /* Ajuste para pantallas más pequeñas */
+  flex-wrap: wrap;
 }
 
 .texto {
@@ -103,13 +117,23 @@ nav ul li a {
 
 .imagenes {
   display: flex;
-  flex-wrap: wrap; /* Ajuste para pantallas más pequeñas */
+  flex-wrap: wrap;
   justify-content: space-around;
   flex: 1;
 }
 
 .imagenes img {
-  max-width: 100%; /* Cambiado para ajustar automáticamente al tamaño del contenedor */
+  max-width: 100%;
   height: auto;
-  margin-bottom: 10px; /* Añadido margen inferior para separar las imágenes */
+  margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .img-container {
+    width: 100%;
+    height: auto;
+  }
+  .gallery-container {
+    gap: 10px;
+  }
 }

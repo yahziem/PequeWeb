@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat de WhatsApp</title>
+  <link rel="stylesheet" href="Chat.css">
+</head>
+<body>
+  <div class="chat-container">
+    <div class="header">
+      <img src="profile.jpg" alt="Profile Picture" class="profile-pic">
+      <h2>Nombre del Contacto</h2>
+    </div>
+    <div class="chat-window">
+      <!-- Mensajes del chat -->
+      <div class="message received">
+        <p>Hola, ¿cómo estás?</p>
+        <span class="timestamp">10:15 AM</span>
+      </div>
+      <div class="message sent">
+        <p>¡Hola! Todo bien, ¿y tú?</p>
+        <span class="timestamp">10:16 AM</span>
+      </div>
+      <div class="message received">
+        <p>Mira esta foto:</p>
+        <img src="photo.jpg" alt="Imagen compartida">
+        <span class="timestamp">10:17 AM</span>
+      </div>
+    </div>
+    <div class="message-input">
+      <input type="text" id="message" placeholder="Escribe un mensaje">
+      <button id="send-btn">Enviar</button>
+    </div>
+  </div>
+  <script src="Gl/JS/Chat.js"></script>
+</body>
+</html>

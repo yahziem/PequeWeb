@@ -1,0 +1,90 @@
+/* Estilo global */
+body {
+    background: #186e888f;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #ffffff; /* Cambia el color del texto a blanco */
+}
+
+.logo {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .logo img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  nav {
+    text-align: center;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline-block;
+    margin: 0 10px;
+  }
+  
+  nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+  }
+/* Gráfica */
+.chart-container {
+    width: 80%;
+    max-width: 600px;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.chart {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+/* Barras */
+.bar {
+    position: relative; /* Para posicionar correctamente la imagen */
+    width: 100px;
+    background-color: #3498db;
+    transition: height 0.5s ease, opacity 0.5s ease;
+    opacity: 0;
+    text-align: center;
+}
+
+.bar.visible {
+    opacity: 1;
+}
+
+.bar img {
+    display: block; /* Ajusta el comportamiento de la imagen */
+    width: 100%; /* La imagen ocupa todo el ancho de la barra */
+    height: auto; /* Altura automática para mantener la proporción */
+    margin: 0 auto; /* Centra la imagen dentro de la barra */
+}
+
+/* Etiquetas */
+.labels {
+    display: flex;
+    justify-content: space-between;
+}
+
+.label {
+    text-align: center;
+    width: 20%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.label.visible {
+    opacity: 1;
+}

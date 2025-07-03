@@ -18,21 +18,182 @@
             width: 100%;
             height: 100%;
         }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .form-container {
+            background: #111;
+            padding: 32px 24px;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(30, 112, 189, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 280px;
+            animation: popIn 0.7s cubic-bezier(.68, -0.55, .27, 1.55);
+        }
+
+        @keyframes popIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .form-container label {
+            color: #1e70bd;
+            font-size: 1.1em;
+            margin-bottom: 18px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-container input[type="date"] {
+            padding: 10px 16px;
+            border: 1.5px solid #1e70bd;
+            border-radius: 8px;
+            background: #222;
+            color: #fff;
+            font-size: 1em;
+            outline: none;
+            transition: border-color 0.3s;
+            margin-bottom: 18px;
+            box-shadow: 0 2px 8px rgba(30, 112, 189, 0.07);
+        }
+
+        .form-container input[type="date"]:focus {
+            border-color: #0f5ea3;
+        }
+
+        .form-container button {
+            background: #1e70bd;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 28px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .form-container button:hover {
+            background: #0f5ea3;
+        }
+
+        .form-container .hint {
+            color: #aaa;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+            font-style: italic;
+            letter-spacing: 0.2px;
+        }
+
+        .form-container .error {
+            color: #ff4d4d;
+            margin-top: 8px;
+            font-size: 0.95em;
+            min-height: 1.2em;
+        }
+
+        .shake {
+            animation: shake 0.4s;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+
+            20% {
+                transform: translateX(-8px);
+            }
+
+            40% {
+                transform: translateX(8px);
+            }
+
+            60% {
+                transform: translateX(-8px);
+            }
+
+            80% {
+                transform: translateX(8px);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Video de inicio -->
-    <video id="videoInicio" autoplay muted>
-        <source src="1.mp4" type="video/mp4">
-        Tu navegador no soporta el elemento de video.
-    </video>
+<!-- Video de inicio -->
+<video id="videoInicio" autoplay muted>
+    <source src="1.mp4" type="video/mp4">
+    Tu navegador no soporta el elemento de video.
+</video>
 
-    <script>
-        // JavaScript para redirigir después de reproducir el video
-        document.getElementById('videoInicio').addEventListener('ended', function() {
-        
+<div id="passwordOverlay" class="overlay" style="display:none;">
+    <form class="form-container" id="passwordForm" autocomplete="off">
+        <label for="fecha">Introduce la Contraseña</label>
+        <div class="hint">Pista: es el día de tu cumpleaños</div>
+        <input type="date" id="fecha" name="fecha" required>
+        <button type="submit">Entrar</button>
+        <div class="error" id="errorMsg"></div>
+    </form>
+</div>
+
+<script>
+    // Cambia esta fecha por la correcta (formato: AAAA-MM-DD)
+    const FECHA_CORRECTA = "2008-03-17"; // <-- Cambia aquí por la fecha correcta
+
+    document.getElementById('videoInicio').addEventListener('ended', function () {
+        document.getElementById('videoInicio').style.display = 'none';
+        document.getElementById('passwordOverlay').style.display = 'flex';
+        document.body.style.overflow = 'auto';
+    });
+
+    document.getElementById('passwordForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const fecha = document.getElementById('fecha').value;
+        const errorMsg = document.getElementById('errorMsg');
+        if (fecha === FECHA_CORRECTA) {
             window.location.href = 'inicio.html';
-        });
-    </script>
+        } else {
+            errorMsg.textContent = "Fecha incorrecta. Intenta de nuevo.";
+            document.getElementById('fecha').classList.add('shake');
+            setTimeout(() => document.getElementById('fecha').classList.remove('shake'), 400);
+        }
+    });
+</script>
 </body>
 </html>

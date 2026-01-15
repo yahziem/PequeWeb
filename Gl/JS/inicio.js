@@ -6,8 +6,8 @@ const imageUrls = [
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor2.jpg',
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor3.jpg',
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor4.jpg',
-    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor5.jpg',
-    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor6.jpg',
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/refs/heads/main/Gl/Inicio/flor5.jpeg',
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/refs/heads/main/Gl/Inicio/flor6.jpeg',
     
 ];
 

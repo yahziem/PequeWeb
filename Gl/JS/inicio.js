@@ -6,7 +6,9 @@ const imageUrls = [
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor2.jpg',
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor3.jpg',
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor4.jpg',
-    // Agrega más URL de imágenes según sea necesario
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor5.jpg',
+    'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/Inicio/flor6.jpg',
+    
 ];
 
 function createGalleryItem(url) {

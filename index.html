@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido</title>
+    <meta name="description" content="Bienvenida personalizada para acceder a la página web de Peque.">
     <link rel="icon" href="logo.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="style/styles.css" type="image/x-icon">
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
     <style>
+        :root {
+            color-scheme: dark;
+            --blue: #1e70bd;
+            --blue-dark: #0f5ea3;
+        }
+
         body, html {
             background: rgb(0, 0, 0);
             height: 100%;
@@ -17,6 +24,7 @@
         video {
             width: 100%;
             height: 100%;
+            object-fit: cover;
         }
 
         .overlay {
@@ -69,15 +77,16 @@
         }
 
         .form-container label {
-            color: #1e70bd;
+            color: var(--blue);
             font-size: 1.1em;
             margin-bottom: 18px;
             letter-spacing: 0.5px;
+            text-align: center;
         }
 
         .form-container input[type="date"] {
             padding: 10px 16px;
-            border: 1.5px solid #1e70bd;
+            border: 1.5px solid var(--blue);
             border-radius: 8px;
             background: #222;
             color: #fff;
@@ -89,11 +98,11 @@
         }
 
         .form-container input[type="date"]:focus {
-            border-color: #0f5ea3;
+            border-color: var(--blue-dark);
         }
 
         .form-container button {
-            background: #1e70bd;
+            background: var(--blue);
             color: #fff;
             border: none;
             border-radius: 8px;
@@ -106,7 +115,25 @@
         }
 
         .form-container button:hover {
-            background: #0f5ea3;
+            background: var(--blue-dark);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .secondary-button {
+            background: transparent;
+            border: 1px solid var(--blue);
+            color: var(--blue);
+        }
+
+        .secondary-button:hover {
+            background: rgba(30, 112, 189, 0.15);
         }
 
         .form-container .hint {
@@ -119,9 +146,10 @@
 
         .form-container .error {
             color: #ff4d4d;
-            margin-top: 8px;
+            margin-top: 14px;
             font-size: 0.95em;
             min-height: 1.2em;
+            text-align: center;
         }
 
         .shake {
@@ -153,11 +181,18 @@
                 transform: translateX(0);
             }
         }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 <body>
 
-<video id="videoInicio" autoplay muted>
+<video id="videoInicio" autoplay muted playsinline>
     <source src="1.mp4" type="video/mp4">
     Tu navegador no soporta el elemento de video.
 </video>
@@ -165,34 +200,50 @@
 <div id="passwordOverlay" class="overlay" style="display:none;">
     <form class="form-container" id="passwordForm" autocomplete="off">
         <label for="fecha">Introduce la Contraseña</label>
-        <div class="hint">Pista: es el día de tu cumpleaños</div>
-        <input type="date" id="fecha" name="fecha" required>
-        <button type="submit">Entrar</button>
-        <div class="error" id="errorMsg"></div>
+        <div class="hint" id="hintMsg">Pista: es el día de tu cumpleaños</div>
+        <input type="date" id="fecha" name="fecha" required aria-describedby="hintMsg errorMsg">
+        <div class="form-actions">
+            <button type="submit">Entrar</button>
+            <button type="button" class="secondary-button" id="skipIntro">Saltar intro</button>
+        </div>
+        <div class="error" id="errorMsg" role="status" aria-live="polite"></div>
     </form>
 </div>
 
 <script>
    
     const FECHA_CORRECTA = "2008-03-17"; 
+    const overlay = document.getElementById('passwordOverlay');
+    const videoInicio = document.getElementById('videoInicio');
+    const fechaInput = document.getElementById('fecha');
+    const errorMsg = document.getElementById('errorMsg');
 
-    document.getElementById('videoInicio').addEventListener('ended', function () {
-        document.getElementById('videoInicio').style.display = 'none';
-        document.getElementById('passwordOverlay').style.display = 'flex';
+    const mostrarFormulario = () => {
+        videoInicio.style.display = 'none';
+        overlay.style.display = 'flex';
         document.body.style.overflow = 'auto';
-    });
+        fechaInput.focus();
+    };
+
+    videoInicio.addEventListener('ended', mostrarFormulario);
+    videoInicio.addEventListener('error', mostrarFormulario);
+
+    document.getElementById('skipIntro').addEventListener('click', mostrarFormulario);
 
     document.getElementById('passwordForm').addEventListener('submit', function (e) {
         e.preventDefault();
-        const fecha = document.getElementById('fecha').value;
-        const errorMsg = document.getElementById('errorMsg');
+        const fecha = fechaInput.value;
         if (fecha === FECHA_CORRECTA) {
             window.location.href = 'inicio.html';
         } else {
             errorMsg.textContent = "Fecha incorrecta. Intenta de nuevo.";
-            document.getElementById('fecha').classList.add('shake');
-            setTimeout(() => document.getElementById('fecha').classList.remove('shake'), 400);
+            fechaInput.classList.add('shake');
+            setTimeout(() => fechaInput.classList.remove('shake'), 400);
         }
+    });
+
+    fechaInput.addEventListener('input', () => {
+        errorMsg.textContent = "";
     });
     //By return 0,S.A. de C.V.
 </script>

@@ -1,7 +1,44 @@
 /* ===============================
    TABLET
 ================================ */
+/* =========================
+   FIX NAVBAR CELULAR
+========================= */
 
+@media screen and (max-width: 600px){
+
+    header{
+        width:100%;
+        padding:12px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+    }
+
+    nav{
+        width:100%;
+    }
+
+    nav ul{
+        width:100%;
+        display:flex;
+        flex-direction:column;
+        align-items:stretch;
+        justify-content:center;
+        gap:10px;
+        padding:0;
+        margin:0;
+    }
+
+    .boton-elegante{
+        width:100%;
+        max-width:none;
+        display:block;
+        margin:0 auto;
+        text-align:center;
+    }
+}
 @media screen and (max-width: 900px){
 
     header{

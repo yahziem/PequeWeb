@@ -16,33 +16,6 @@ import {
     getDownloadURL
 } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-storage.js";
 
-// CONFIG
-
-const firebaseConfig = {
-
-    apiKey: "AIzaSyAGLXh7unKGpJvBXKOMiqKuD2Fo21Ufuxc",
-
-    authDomain: "peque-web.firebaseapp.com",
-
-    projectId: "peque-web",
-
-    storageBucket: "peque-web.firebasestorage.app",
-
-    messagingSenderId: "673356201533",
-
-    appId: "1:673356201533:web:1b4ab178a462bd2667b454",
-
-    measurementId: "G-B4WZR9YY90"
-
-};
-
-// INIT
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-const storage = getStorage(app);
 
 // HTML
 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario de Eventos</title>
+    <link rel="icon" href="logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style/styles.css">
+</head>
+<body>
+    <div class="logo">
+        <img src="logo.ico" alt="Logo">
+        <nav>
+            <ul>
+                <button class="boton-elegante" onclick="location.href='inicio.html';">Inicio</button>
+                <button class="boton-elegante" onclick="location.href='galeria.html';">Galería</button>
+                <button class="boton-elegante" onclick="location.href='Canciones.html';">Canciones</button>
+                <button class="boton-elegante" onclick="location.href='Notas.html';">Notas</button>
+                <button class="boton-elegante" onclick="location.href='Preguntas.html';">Preguntas</button>
+                
+                <button class="boton-elegante" onclick="location.href='Ⓜ️❤️.html';">Ⓜ️❤️</button>
+                <button class="boton-elegante" onclick="location.href='https://yahziem.github.io/Arbolito/Index.html';">Arbolito🎄</button>
+                <button class="boton-elegante" onclick="location.href='https://yahziem.github.io/Contador/ ';">Contador⌛</button>
+
+            </ul>
+        </nav>
+    <div class="calendar">
+        <div class="header">
+            <button id="prevMonth">&lt;</button>
+            <h2 id="monthYear">Marzo 2024</h2>
+            <button id="nextMonth">&gt;</button>
+        </div>
+        <div class="days"></div>
+    </div>
+
+    <div class="event-form">
+        <h3>Agregar Evento</h3>
+        <input type="date" id="eventDate">
+        <input type="text" id="eventName" placeholder="Nombre del Evento">
+        <button id="addEvent">Agregar</button>
+    </div>
+
+    <div class="event-list">
+        <h3>Eventos Agregados</h3>
+        <ul id="eventList"></ul>
+    </div>
+
+    <script src="Gl/JS/calendario.js"></script>
+</body>
+</html>
+

@@ -1,508 +1,221 @@
-/* =========================
-   RESET
-========================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    background:
-    radial-gradient(circle at top,#111827 0%,#050505 45%,#000 100%);
-    color:#ffffff;
-    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
-    min-height:100vh;
-    overflow-x:hidden;
-}
-
-/* =========================
-   SCROLLBAR
-========================= */
-
-::-webkit-scrollbar{
-    width:10px;
-}
-
-::-webkit-scrollbar-track{
-    background:#050505;
-}
-
-::-webkit-scrollbar-thumb{
-    background:#1e70bd;
-    border-radius:20px;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-header{
-    width:100%;
-    padding:25px 20px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:20px;
-    position:sticky;
-    top:0;
-    z-index:999;
-    backdrop-filter:blur(14px);
-    background:rgba(0,0,0,0.65);
-    border-bottom:1px solid rgba(255,255,255,0.08);
-}
-
-/* =========================
-   LOGO
-========================= */
-
-.logo{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-}
-
-.logo img{
-    width:110px;
-    height:110px;
-    border-radius:50%;
-    object-fit:cover;
-    border:4px solid #1e70bd;
-    box-shadow:
-    0 0 25px rgba(30,112,189,.55),
-    0 0 60px rgba(30,112,189,.25);
-    transition:.4s ease;
-}
-
-.logo img:hover{
-    transform:scale(1.08) rotate(3deg);
-}
-
-/* =========================
-   NAV
-========================= */
-
-nav{
-    width:100%;
-}
-
-nav ul{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    align-items:center;
-    gap:14px;
-    list-style:none;
-}
-
-/* =========================
-   BOTONES
-========================= */
-
-.boton-elegante{
-    position:relative;
-    padding:14px 24px;
-    border-radius:50px;
-    border:1.5px solid rgba(30,112,189,.6);
-    background:rgba(255,255,255,.04);
-    color:#ffffff;
-    font-size:1rem;
-    font-weight:600;
-    cursor:pointer;
-    transition:.35s ease;
-    overflow:hidden;
-    backdrop-filter:blur(10px);
-    box-shadow:
-    inset 0 0 0 rgba(255,255,255,0),
-    0 8px 20px rgba(0,0,0,.35);
-}
-
-.boton-elegante::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-    135deg,
-    rgba(30,112,189,.35),
-    rgba(255,255,255,.05)
-    );
-    opacity:0;
-    transition:.35s ease;
-}
-
-.boton-elegante:hover{
-    transform:translateY(-4px) scale(1.03);
-    border-color:#49a6ff;
-    color:#fff;
-    box-shadow:
-    0 0 25px rgba(30,112,189,.45),
-    0 10px 25px rgba(0,0,0,.5);
-}
-
-.boton-elegante:hover::before{
-    opacity:1;
-}
-
-.boton-elegante:active{
-    transform:scale(.96);
-}
-
-/* =========================
-   TITULOS
-========================= */
-
-h1,h2,h3{
-    text-align:center;
-    color:#ffffff;
-    margin-bottom:20px;
-}
-
-h1{
-    font-size:2.4rem;
-}
-
-h2{
-    font-size:2rem;
-}
-
-h3{
-    color:#5cbcff;
-}
-
-/* =========================
-   GALERIAS
-========================= */
-
-.gallery-container{
-    width:100%;
-    display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(260px,1fr));
-    gap:28px;
-    padding:40px;
-}
-
-.gallery-item{
-    position:relative;
-    border-radius:24px;
-    overflow:hidden;
-    background:rgba(255,255,255,.03);
-    border:1px solid rgba(255,255,255,.06);
-    transition:.4s ease;
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.35);
-}
-
-.gallery-item:hover{
-    transform:translateY(-8px);
-    box-shadow:
-    0 18px 40px rgba(0,0,0,.6),
-    0 0 20px rgba(30,112,189,.2);
-}
-
-.img-container{
-    width:100%;
-    aspect-ratio:1/1;
-    overflow:hidden;
-    position:relative;
-    cursor:pointer;
-}
-
-.img-container img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:transform .5s ease;
-}
-
-.gallery-item:hover img{
-    transform:scale(1.12);
-}
-
-/* =========================
-   IMAGEN AMPLIADA
-========================= */
-
-.img-container.enlarged{
-    position:fixed;
-    inset:0;
-    width:100vw;
-    height:100vh;
-    z-index:9999;
-    background:rgba(0,0,0,.92);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    animation:fadeZoom .35s ease;
-}
-
-.img-container.enlarged img{
-    width:auto;
-    height:auto;
-    max-width:90%;
-    max-height:90%;
-    border-radius:20px;
-    box-shadow:
-    0 0 40px rgba(0,0,0,.7);
-    transform:none !important;
-}
-
-@keyframes fadeZoom{
-    from{
-        opacity:0;
-        transform:scale(.9);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-
-/* =========================
-   SUBIR FOTOS
-========================= */
-
-.upload-section{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    margin-top:35px;
-}
-
-.upload-button{
-    padding:16px 34px;
-    border:none;
-    border-radius:50px;
-    background:linear-gradient(
-    135deg,
-    #1e70bd,
-    #49a6ff
-    );
-    color:white;
-    font-size:1rem;
-    font-weight:700;
-    cursor:pointer;
-    transition:.35s ease;
-    box-shadow:
-    0 10px 25px rgba(30,112,189,.35);
-}
-
-.upload-button:hover{
-    transform:translateY(-5px) scale(1.05);
-    box-shadow:
-    0 16px 35px rgba(30,112,189,.55);
-}
-
-/* =========================
-   PDFS
-========================= */
-
-.pdf-container{
-    width:min(1100px,92%);
-    margin:40px auto;
-    display:grid;
-    grid-template-columns:
-    repeat(auto-fit,minmax(320px,1fr));
-    gap:25px;
-}
-
-.pdf-preview{
-    background:rgba(255,255,255,.04);
-    border:1px solid rgba(255,255,255,.08);
-    border-radius:22px;
-    padding:20px;
-    transition:.35s ease;
-    backdrop-filter:blur(10px);
-    box-shadow:
-    0 10px 25px rgba(0,0,0,.35);
-}
-
-.pdf-preview:hover{
-    transform:translateY(-6px);
-}
-
-.pdf-preview embed{
-    border:none;
-    border-radius:14px;
-    overflow:hidden;
-}
-
-/* =========================
-   QUIZ
-========================= */
-
-#quiz{
-    width:min(700px,92%);
-    margin:50px auto;
-    padding:35px;
-    border-radius:28px;
-    background:rgba(255,255,255,.04);
-    border:1px solid rgba(255,255,255,.08);
-    box-shadow:
-    0 10px 35px rgba(0,0,0,.45);
-    backdrop-filter:blur(14px);
-}
-
-#question{
-    font-size:1.4rem;
-    margin-bottom:25px;
-    text-align:center;
-    line-height:1.6;
-}
-
-#choices{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-
-#choices button,
-#submit{
-    padding:16px;
-    border:none;
-    border-radius:16px;
-    background:rgba(255,255,255,.05);
-    color:white;
-    font-size:1rem;
-    cursor:pointer;
-    transition:.3s ease;
-    border:1px solid rgba(255,255,255,.06);
-}
-
-#choices button:hover,
-#submit:hover{
-    background:#1e70bd;
-    transform:translateY(-2px);
-}
-
-#result,
-#finalResult{
-    margin-top:20px;
-    text-align:center;
-    font-size:1.1rem;
-    font-weight:600;
-}
-
-/* =========================
-   IMAGENES INICIO
-========================= */
-
-.imagenes{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:25px;
-    flex-wrap:wrap;
-    padding:30px;
-}
-
-.imagenes img{
-    width:min(420px,90%);
-    border-radius:25px;
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.5);
-    transition:.4s ease;
-}
-
-.imagenes img:hover{
-    transform:scale(1.04);
-}
-
-/* =========================
-   SPOTIFY
-========================= */
-
-iframe{
-    width:min(1200px,95%);
-    margin:30px auto;
-    display:block;
-    border:none;
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.45);
-}
-
-/* =========================
-   COOKIE BANNER
-========================= */
-
-#cookie-banner{
-    backdrop-filter:blur(10px);
-    background:rgba(0,0,0,.85) !important;
-    border-top:1px solid rgba(255,255,255,.08);
-}
-
-#cookie-banner button{
-    margin-left:10px;
-    border-radius:12px !important;
-    font-weight:700;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media(max-width:900px){
-
-    header{
-        padding:20px 10px;
-    }
-
-    .logo img{
-        width:90px;
-        height:90px;
-    }
+/* =========================================
+   PANTALLAS GRANDES
+========================================= */
+
+@media (min-width: 1400px){
 
     .gallery-container{
-        padding:20px;
-        gap:18px;
+        grid-template-columns:
+        repeat(auto-fit,minmax(320px,1fr));
+        max-width:1700px;
+        margin:auto;
+    }
+
+    .pdf-container{
+        max-width:1600px;
+    }
+
+    header{
+        padding:30px;
+    }
+
+    .boton-elegante{
+        font-size:1.05rem;
+    }
+}
+
+/* =========================================
+   LAPTOPS
+========================================= */
+
+@media (max-width: 1200px){
+
+    .gallery-container{
+        grid-template-columns:
+        repeat(auto-fit,minmax(250px,1fr));
+    }
+
+    iframe{
+        height:850px;
+    }
+}
+
+/* =========================================
+   TABLETS
+========================================= */
+
+@media (max-width: 900px){
+
+    body{
+        overflow-x:hidden;
+    }
+
+    header{
+        gap:15px;
+    }
+
+    nav{
+        width:100%;
+    }
+
+    nav ul{
+        width:100%;
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:12px;
     }
 
     .boton-elegante{
         width:100%;
-        max-width:250px;
-    }
-
-    nav ul{
-        flex-direction:column;
-    }
-
-    #quiz{
-        padding:22px;
-    }
-}
-
-@media(max-width:600px){
-
-    h1{
-        font-size:1.8rem;
-    }
-
-    h2{
-        font-size:1.5rem;
+        max-width:none;
+        font-size:.95rem;
+        padding:14px 10px;
     }
 
     .gallery-container{
-        grid-template-columns:1fr;
+        padding:18px;
+        grid-template-columns:
+        repeat(auto-fit,minmax(220px,1fr));
     }
 
-    .upload-button{
-        width:90%;
+    .imagenes{
+        flex-direction:column;
     }
 
-    .img-container.enlarged img{
-        max-width:95%;
-        max-height:85%;
+    .imagenes img{
+        width:95%;
+    }
+
+    #quiz{
+        width:94%;
     }
 
     iframe{
-        height:600px;
+        width:95%;
+        height:700px;
+    }
+}
+
+/* =========================================
+   CELULARES
+========================================= */
+
+@media (max-width: 600px){
+
+    body{
+        overflow-x:hidden;
+    }
+
+    header{
+        position:relative;
+        padding:20px 12px;
+    }
+
+    .logo img{
+        width:75px;
+        height:75px;
+    }
+
+    nav ul{
+        grid-template-columns:1fr;
+    }
+
+    .boton-elegante{
+        width:100%;
+        border-radius:18px;
+        padding:14px;
+        font-size:.92rem;
+    }
+
+    .gallery-container{
+        padding:14px;
+        gap:16px;
+        grid-template-columns:1fr;
+    }
+
+    .gallery-item{
+        border-radius:18px;
+    }
+
+    .img-container{
+        aspect-ratio:1/1;
+    }
+
+    h1{
+        font-size:1.6rem;
+    }
+
+    h2{
+        font-size:1.3rem;
+        padding:0 10px;
+    }
+
+    #quiz{
+        padding:18px;
+        border-radius:20px;
+    }
+
+    #question{
+        font-size:1.05rem;
+    }
+
+    #choices button,
+    #submit{
+        font-size:.95rem;
+        padding:14px;
+    }
+
+    .upload-button{
+        width:92%;
+        font-size:1rem;
+    }
+
+    .pdf-container{
+        width:95%;
+        grid-template-columns:1fr;
+    }
+
+    .pdf-preview{
+        padding:14px;
+    }
+
+    iframe{
+        width:95%;
+        height:500px;
+        border-radius:18px;
+    }
+
+    #cookie-banner{
+        font-size:12px !important;
+        padding:10px !important;
+    }
+}
+
+/* =========================================
+   CELULARES PEQUEÑOS
+========================================= */
+
+@media (max-width: 380px){
+
+    .boton-elegante{
+        font-size:.85rem;
+        padding:12px;
+    }
+
+    .logo img{
+        width:65px;
+        height:65px;
+    }
+
+    h1{
+        font-size:1.4rem;
+    }
+
+    h2{
+        font-size:1.1rem;
+    }
+
+    iframe{
+        height:420px;
     }
 }

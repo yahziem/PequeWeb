@@ -1,127 +1,50 @@
 <!DOCTYPE html>
-<link rel="shortcut icon" href="logo.ico" type="image/x-icon">
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería 😻</title>
-
-    <link
-        rel="stylesheet"
-        href="style/styles.css"
-    >
-
+    
+    <!-- El Favicon y los Estilos van SIEMPRE dentro del Head -->
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style/styles.css">
 </head>
-<script type="module">
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-analytics.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
 
-  // Your web app's Firebase configuration
-  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-  const firebaseConfig = {
-    apiKey: "AIzaSyAGLXh7unKGpJvBXKOMiqKuD2Fo21Ufuxc",
-    authDomain: "peque-web.firebaseapp.com",
-    projectId: "peque-web",
-    storageBucket: "peque-web.firebasestorage.app",
-    messagingSenderId: "673356201533",
-    appId: "1:673356201533:web:1b4ab178a462bd2667b454",
-    measurementId: "G-B4WZR9YY90"
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const analytics = getAnalytics(app);
-</script>
 <body>
 
-    <!-- HEADER -->
+    <!-- HEADER Y NAVEGACIÓN -->
     <header>
-
         <div class="logo">
-
-            <img
-                src="logo.ico"
-                alt="Logo"
-            >
-
+            <img src="logo.ico" alt="Logo">
         </div>
 
         <nav>
-
-            <button
-                class="boton-elegante"
-                onclick="location.href='inicio.html'"
-            >
-                Inicio
-            </button>
-
-            <button
-                class="boton-elegante"
-                onclick="location.href='galeria.html'"
-            >
-                Galería
-            </button>
-
-            <button
-                class="boton-elegante"
-                onclick="location.href='Canciones.html'"
-            >
-                Canciones
-            </button>
-
-            <button
-                class="boton-elegante"
-                onclick="location.href='Notas.html'"
-            >
-                Notas
-            </button>
-
+            <!-- Cambiados a etiquetas <a> por accesibilidad y semántica -->
+            <a href="inicio.html" class="boton-elegante">Inicio</a>
+            <a href="galeria.html" class="boton-elegante">Galería</a>
+            <a href="Canciones.html" class="boton-elegante">Canciones</a>
+            <a href="Notas.html" class="boton-elegante">Notas</a>
         </nav>
-
     </header>
 
-    <!-- BOTÓN SUBIR -->
+    <!-- SECCIÓN DE SUBIDA -->
     <div class="upload-section">
-
-        <button
-            id="uploadBtn"
-            class="upload-button"
-        >
+        <button id="uploadBtn" class="upload-button">
             📸 Subir Fotos
         </button>
-
-        <input
-            type="file"
-            id="imageUpload"
-            accept="image/*"
-            multiple
-            hidden
-        >
-
+        
+        <!-- Input oculto que se activa mediante JS -->
+        <input type="file" id="imageUpload" accept="image/*" multiple hidden>
     </div>
 
-    <!-- GALERÍA -->
-    <div
-        class="gallery-container"
-        id="galleryContainer"
-    ></div>
+    <!-- CONTENEDOR DE LA GALERÍA -->
+    <!-- Aquí es donde tu JS inyectará dinámicamente las fotos -->
+    <div class="gallery-container" id="galleryContainer"></div>
 
-    <!-- JS -->
-    <script
-        type="module"
-        src="Gl/JS/script.js"
-    ></script>
+    <!-- UNICO SCRIPT DE JS (Módulo principal) -->
+    <!-- Toda la lógica y la config de Firebase se maneja acá adentro -->
+    <script type="module" src="Gl/JS/script.js"></script>
 
 </body>
-
 </html>

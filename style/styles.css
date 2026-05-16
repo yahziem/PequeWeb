@@ -84,7 +84,7 @@ a {
 }
 
 /* ==========================================================================
-   HEADER Y NAVEGACIÓN (Corregido para no romperse en móviles)
+   HEADER Y NAVEGACIÓN (Corregido para el nuevo HTML)
    ========================================================================== */
 header {
     background: rgba(0, 0, 0, 0.8);
@@ -94,9 +94,8 @@ header {
     z-index: 100;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     padding: 15px 20px;
-}
-
-.header-wrap {
+    
+    /* Flexbox aplicado directamente al header */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -118,48 +117,45 @@ header {
     border: 2px solid var(--accent);
 }
 
+/* Barra de navegación deslizable en móviles */
 nav {
     width: 100%;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
     display: flex;
-    justify-content: center;
-    gap: 5px;
-    overflow-x: auto; /* Scroll horizontal si faltase espacio */
+    justify-content: flex-start;
+    gap: 8px;
+    overflow-x: auto; /* Scroll horizontal si falta espacio en celular */
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
     padding-bottom: 5px;
 }
 
-/* Ocultar barra de scroll interna pero mantener funcionalidad */
-nav ul::-webkit-scrollbar { display: none; }
-
-nav ul li a {
-    display: block;
-    font-weight: 600;
-    padding: 8px 16px;
-    border-radius: var(--radius-sm);
-    font-size: 0.95rem;
+/* Ocultar barra de scroll interna del nav pero mantener su funcionalidad */
+nav::-webkit-scrollbar { 
+    display: none; 
 }
 
-nav ul li a:hover, 
-nav ul li a:focus {
+/* Estilos para los botones de navegación (Ex-enlaces) */
+nav .boton-elegante {
+    width: auto; /* No ocupa el 100% en el menú deslizable */
+    padding: 8px 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+}
+
+nav .boton-elegante:hover,
+nav .boton-elegante:focus {
     background-color: var(--accent-alpha);
     color: var(--text);
 }
 
 /* ==========================================================================
-   COMPONENTES: BOTONES
+   COMPONENTES: BOTONES GLOBAL Y SUBIDA
    ========================================================================== */
 .boton-elegante, .upload-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 100%; /* Full-width en móvil para accionar fácil con el pulgar */
     padding: 14px 28px;
     font-size: 1rem;
     font-weight: 700;
@@ -181,7 +177,16 @@ nav ul li a:focus {
     box-shadow: var(--shadow-glow);
 }
 
+/* Sección y botón de subida (Se mantiene ancho completo en móvil para el pulgar) */
+.upload-section {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
 .upload-button {
+    width: 100%;
+    max-width: 400px;
     background: var(--accent);
     color: #ffffff;
     box-shadow: var(--shadow-glow);
@@ -193,14 +198,13 @@ nav ul li a:focus {
 }
 
 /* ==========================================================================
-   GALERÍA (Arreglado el ancho fijo que rompía el responsive)
+   GALERÍA (Solución al bug de Zoom e imágenes atrapadas)
    ========================================================================== */
 .gallery-container {
     display: grid;
-    /* Columnas auto-ajustables en base al espacio de pantalla sin romper el layout */
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 20px;
-    padding: 20px 0;
+    padding: 20px;
 }
 
 .gallery-item {
@@ -211,6 +215,13 @@ nav ul li a:focus {
     transition: var(--transition);
 }
 
+/* Importante: Si la foto está agrandada, desactivamos el transform del padre 
+   para que no rompa el "position: fixed" de la imagen en pantalla completa */
+.gallery-item:has(.enlarged) {
+    transform: none !important;
+    position: static;
+}
+
 .gallery-item:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-glow);
@@ -218,7 +229,7 @@ nav ul li a:focus {
 
 .img-container {
     width: 100%;
-    aspect-ratio: 1 / 1; /* Mantiene la proporción cuadrada original (300x300) de manera fluida */
+    aspect-ratio: 1 / 1; /* Cuadrado perfecto fluido */
     overflow: hidden;
     cursor: pointer;
 }
@@ -234,10 +245,13 @@ nav ul li a:focus {
     transform: scale(1.08);
 }
 
-/* Modal / Enlarged (Mejorado para móvil táctil) */
+/* MODAL / ZOOM COMPLETO (Corregido y fluido) */
 .img-container.enlarged {
     position: fixed;
-    top: 0; left: 0; width: 100vw; height: 100vh;
+    top: 0; 
+    left: 0; 
+    width: 100vw; 
+    height: 100vh;
     z-index: 1000;
     background-color: rgba(0, 0, 0, 0.95);
     display: flex;
@@ -246,14 +260,17 @@ nav ul li a:focus {
 }
 
 .img-container.enlarged img {
+    width: auto;
+    height: auto;
     max-width: 95%;
-    max-height: 85vh;
+    max-height: 90vh;
     object-fit: contain;
     border-radius: var(--radius-sm);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
 
 /* ==========================================================================
-   PDF E IFRAMES (Flexibles y adaptables)
+   PDF E IFRAMES 
    ========================================================================== */
 .pdf-container {
     background: var(--surface);
@@ -269,7 +286,7 @@ nav ul li a:focus {
 
 iframe, embed {
     width: 100%;
-    height: 450px; /* Reducido para pantallas pequeñas por defecto */
+    height: 450px;
     border: 1px solid rgba(255,255,255,0.1);
     border-radius: var(--radius-sm);
     background: #111;
@@ -323,7 +340,7 @@ h2 { font-size: 1.4rem; color: var(--muted); }
    MEDIA QUERIES (Escritorio y pantallas medianas)
    ========================================================================== */
 @media (min-width: 768px) {
-    .header-wrap {
+    header {
         flex-direction: row;
         justify-content: space-between;
     }
@@ -337,15 +354,11 @@ h2 { font-size: 1.4rem; color: var(--muted); }
     }
     nav {
         width: auto;
-    }
-    nav ul {
-        gap: 10px;
+        justify-content: center;
+        overflow-x: visible;
     }
     .contenedor {
         flex-direction: row;
-    }
-    .boton-elegante, .upload-button {
-        width: auto; /* Deja de ser full-width en pantallas grandes */
     }
     iframe, embed {
         height: 600px;

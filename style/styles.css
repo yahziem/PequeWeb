@@ -1,248 +1,354 @@
-/* ===============================
-   TABLET
-================================ */
-/* =========================
-   FIX NAVBAR CELULAR
-========================= */
-
-@media screen and (max-width: 600px){
-
-    header{
-        width:100%;
-        padding:12px;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-    }
-
-    nav{
-        width:100%;
-    }
-
-    nav ul{
-        width:100%;
-        display:flex;
-        flex-direction:column;
-        align-items:stretch;
-        justify-content:center;
-        gap:10px;
-        padding:0;
-        margin:0;
-    }
-
-    .boton-elegante{
-        width:100%;
-        max-width:none;
-        display:block;
-        margin:0 auto;
-        text-align:center;
-    }
-}
-@media screen and (max-width: 900px){
-
-    header{
-        position:relative;
-        padding:20px 15px;
-    }
-
-    nav{
-        width:100%;
-    }
-
-    nav ul{
-        display:flex;
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:10px;
-    }
-
-    .boton-elegante{
-        flex:1 1 45%;
-        min-width:140px;
-    }
-
-    .gallery-container{
-        grid-template-columns:
-        repeat(2,1fr);
-        padding:18px;
-        gap:18px;
-    }
-
-    iframe{
-        height:650px;
-    }
+/* ==========================================================================
+   VARIABLES, RESET Y ACCESIBILIDAD (Mobile-First & Ultra-Responsive)
+   ========================================================================== */
+:root {
+    --bg: #000000;
+    --surface: #0a0f1d; /* Un tono sutilmente más claro que el negro absoluto para dar profundidad */
+    --text: #e6eef8;
+    --muted: #9aa6b2;
+    --accent: #1e70bd;
+    --accent-600: #0f5ea3;
+    --accent-alpha: rgba(30, 112, 189, 0.15);
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 30px;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 15px rgba(30, 112, 189, 0.25);
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ===============================
-   CELULAR
-================================ */
-
-@media screen and (max-width: 600px){
-
-    body{
-        overflow-x:hidden;
-    }
-
-    header{
-        padding:15px 10px;
-        gap:15px;
-    }
-
-    .logo{
-        width:100%;
-        display:flex;
-        justify-content:center;
-    }
-
-    .logo img{
-        width:70px;
-        height:70px;
-    }
-
-    nav{
-        width:100%;
-    }
-
-    nav ul{
-        width:100%;
-        display:flex;
-        flex-direction:column;
-        gap:10px;
-        align-items:center;
-    }
-
-    .boton-elegante{
-        width:95%;
-        max-width:320px;
-        padding:14px 12px;
-        font-size:.95rem;
-        border-radius:16px;
-    }
-
-    .gallery-container{
-        width:100%;
-        padding:12px;
-        display:grid;
-        grid-template-columns:1fr;
-        gap:16px;
-    }
-
-    .gallery-item{
-        width:100%;
-    }
-
-    .img-container{
-        width:100%;
-        height:auto;
-        aspect-ratio:1/1;
-    }
-
-    .img-container img{
-        width:100%;
-        height:100%;
-        object-fit:cover;
-    }
-
-    .imagenes{
-        flex-direction:column;
-        padding:15px;
-        gap:15px;
-    }
-
-    .imagenes img{
-        width:100%;
-        border-radius:18px;
-    }
-
-    #quiz{
-        width:95%;
-        margin:25px auto;
-        padding:18px;
-        border-radius:18px;
-    }
-
-    #question{
-        font-size:1rem;
-        line-height:1.5;
-    }
-
-    #choices button,
-    #submit{
-        width:100%;
-        padding:14px;
-        font-size:.95rem;
-    }
-
-    .upload-section{
-        padding:0 12px;
-    }
-
-    .upload-button{
-        width:100%;
-        padding:15px;
-        border-radius:18px;
-    }
-
-    .pdf-container{
-        width:95%;
-        display:flex;
-        flex-direction:column;
-        gap:18px;
-    }
-
-    .pdf-preview{
-        width:100%;
-        padding:12px;
-    }
-
-    .pdf-preview embed{
-        height:240px;
-    }
-
-    iframe{
-        width:95%;
-        height:450px;
-        border-radius:18px;
-    }
-
-    h1{
-        font-size:1.5rem;
-    }
-
-    h2{
-        font-size:1.2rem;
-        padding:0 10px;
-    }
-
-    #cookie-banner{
-        padding:12px !important;
-        font-size:12px !important;
-    }
-
-    #cookie-banner button{
-        margin-top:8px;
-        width:100%;
-    }
+* {
+    box-sizing: border-box;
 }
 
-/* ===============================
-   CELULARES MUY PEQUEÑOS
-================================ */
+html, body {
+    height: 100%;
+    margin: 0;
+}
 
-@media screen and (max-width: 380px){
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden; /* Evita scrolls horizontales accidentales */
+}
 
-    .boton-elegante{
-        font-size:.85rem;
-        padding:12px;
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Enlaces globales */
+a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+/* Accesibilidad por teclado */
+:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* ==========================================================================
+   ESTRUCTURA GENERAL Y CONTENEDORES
+   ========================================================================== */
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Columnas flexibles (Texto e imágenes) */
+.contenedor {
+    display: flex;
+    flex-direction: column; /* Mobile-first */
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.texto {
+    flex: 1;
+}
+
+.imagenes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 15px;
+    flex: 1;
+}
+
+/* ==========================================================================
+   HEADER Y NAVEGACIÓN (Corregido para no romperse en móviles)
+   ========================================================================== */
+header {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(12px); /* Efecto premium traslúcido */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 15px 20px;
+}
+
+.header-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 70px; /* Tamaño balanceado para móvil */
+    height: 70px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent);
+}
+
+nav {
+    width: 100%;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    overflow-x: auto; /* Scroll horizontal si faltase espacio */
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 5px;
+}
+
+/* Ocultar barra de scroll interna pero mantener funcionalidad */
+nav ul::-webkit-scrollbar { display: none; }
+
+nav ul li a {
+    display: block;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+}
+
+nav ul li a:hover, 
+nav ul li a:focus {
+    background-color: var(--accent-alpha);
+    color: var(--text);
+}
+
+/* ==========================================================================
+   COMPONENTES: BOTONES
+   ========================================================================== */
+.boton-elegante, .upload-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; /* Full-width en móvil para accionar fácil con el pulgar */
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    transition: var(--transition);
+    text-align: center;
+    border: 2px solid var(--accent);
+}
+
+.boton-elegante {
+    background: var(--bg);
+    color: var(--accent);
+}
+
+.boton-elegante:hover {
+    background: var(--accent);
+    color: #ffffff;
+    box-shadow: var(--shadow-glow);
+}
+
+.upload-button {
+    background: var(--accent);
+    color: #ffffff;
+    box-shadow: var(--shadow-glow);
+}
+
+.upload-button:hover {
+    background: var(--accent-600);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   GALERÍA (Arreglado el ancho fijo que rompía el responsive)
+   ========================================================================== */
+.gallery-container {
+    display: grid;
+    /* Columnas auto-ajustables en base al espacio de pantalla sin romper el layout */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.gallery-item {
+    background: var(--surface);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow);
+}
+
+.img-container {
+    width: 100%;
+    aspect-ratio: 1 / 1; /* Mantiene la proporción cuadrada original (300x300) de manera fluida */
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.08);
+}
+
+/* Modal / Enlarged (Mejorado para móvil táctil) */
+.img-container.enlarged {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 1000;
+    background-color: rgba(0, 0, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-container.enlarged img {
+    max-width: 95%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   PDF E IFRAMES (Flexibles y adaptables)
+   ========================================================================== */
+.pdf-container {
+    background: var(--surface);
+    padding: 20px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+    margin: 20px 0;
+}
+
+.pdf-preview {
+    margin: 15px 0;
+}
+
+iframe, embed {
+    width: 100%;
+    height: 450px; /* Reducido para pantallas pequeñas por defecto */
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-sm);
+    background: #111;
+}
+
+/* ==========================================================================
+   QUIZ INTERACTIVO
+   ========================================================================== */
+#quiz {
+    background: var(--surface);
+    padding: 24px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-glow);
+    margin: 30px auto;
+}
+
+#choices {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#quiz button {
+    margin-top: 5px;
+    padding: 14px;
+    background: #111622;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+#quiz button:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+}
+
+/* Tipografía global adaptativa */
+h1 { font-size: 1.8rem; margin-bottom: 12px; }
+h2 { font-size: 1.4rem; color: var(--muted); }
+.center { text-align: center; }
+
+/* Preferencias de accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (Escritorio y pantallas medianas)
+   ========================================================================== */
+@media (min-width: 768px) {
+    .header-wrap {
+        flex-direction: row;
+        justify-content: space-between;
     }
-
-    .logo img{
-        width:60px;
-        height:60px;
+    .logo {
+        flex-direction: row;
+        text-align: left;
     }
-
-    iframe{
-        height:380px;
+    .logo img {
+        width: 60px;
+        height: 60px;
     }
+    nav {
+        width: auto;
+    }
+    nav ul {
+        gap: 10px;
+    }
+    .contenedor {
+        flex-direction: row;
+    }
+    .boton-elegante, .upload-button {
+        width: auto; /* Deja de ser full-width en pantallas grandes */
+    }
+    iframe, embed {
+        height: 600px;
+    }
+    h1 { font-size: 2.2rem; }
 }

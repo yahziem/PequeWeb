@@ -43,10 +43,17 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 
 // ===============================
-// CONTENEDOR GALERÍA
+// ELEMENTOS HTML
 // ===============================
 
-const galleryContainer = document.getElementById('galleryContainer');
+const galleryContainer =
+    document.getElementById('galleryContainer');
+
+const imageUpload =
+    document.getElementById('imageUpload');
+
+const uploadBtn =
+    document.getElementById('uploadBtn');
 
 // ===============================
 // IMÁGENES YA EXISTENTES
@@ -97,25 +104,24 @@ const imageUrls = [
 
 ];
 
-
 // ===============================
 // CREAR IMAGEN
 // ===============================
 
 function createGalleryItem(url) {
 
-    // CONTENEDOR
-    const item = document.createElement('div');
+    const item =
+        document.createElement('div');
 
     item.classList.add('gallery-item');
 
-    // CONTENEDOR IMAGEN
-    const imgContainer = document.createElement('div');
+    const imgContainer =
+        document.createElement('div');
 
     imgContainer.classList.add('img-container');
 
-    // IMAGEN
-    const img = document.createElement('img');
+    const img =
+        document.createElement('img');
 
     img.src = url;
 
@@ -124,26 +130,31 @@ function createGalleryItem(url) {
     // ERROR
     img.onerror = () => {
 
-        img.src = 'https://via.placeholder.com/300?text=Error';
+        img.src =
+            'https://via.placeholder.com/300?text=Error';
 
     };
 
-    // ZOOM
-    imgContainer.addEventListener('click', () => {
+    // CLICK ZOOM
+    imgContainer.addEventListener(
+        'click',
+        () => {
 
-        if (imgContainer.classList.contains('enlarged')) {
+            if (
+                imgContainer.classList.contains('enlarged')
+            ) {
 
-            closeImage(imgContainer);
+                closeImage(imgContainer);
 
-        } else {
+            } else {
 
-            openImage(imgContainer);
+                openImage(imgContainer);
+
+            }
 
         }
+    );
 
-    });
-
-    // AGREGAR
     imgContainer.appendChild(img);
 
     item.appendChild(imgContainer);
@@ -191,7 +202,7 @@ function closeAllImages() {
 }
 
 // ===============================
-// CERRAR CLICK FUERA
+// CLICK FUERA
 // ===============================
 
 document.addEventListener('click', (e) => {
@@ -221,11 +232,35 @@ imageUrls.forEach(url => {
 });
 
 // ===============================
-// SUBIR IMÁGENES
+// PEDIR PIN
 // ===============================
 
-const imageUpload =
-    document.getElementById('imageUpload');
+uploadBtn.addEventListener('click', () => {
+
+    const pin = prompt(
+        '🔒 Ingresa el PIN\n\nPista: es el número de bloqueo de mi teléfono'
+    );
+
+    // CANCELAR
+    if (pin === null) return;
+
+    // PIN INCORRECTO
+    if (pin !== '0817') {
+
+        alert('❌ PIN incorrecto');
+
+        return;
+
+    }
+
+    // ABRIR SELECTOR
+    imageUpload.click();
+
+});
+
+// ===============================
+// SUBIR IMÁGENES
+// ===============================
 
 imageUpload.addEventListener(
     'change',
@@ -260,7 +295,7 @@ imageUpload.addEventListener(
                 const downloadURL =
                     await getDownloadURL(storageRef);
 
-                // GUARDAR FIRESTORE
+                // FIRESTORE
                 await addDoc(
                     collection(db, "imagenes"),
                     {
@@ -286,11 +321,14 @@ imageUpload.addEventListener(
 
         }
 
+        // LIMPIAR
+        imageUpload.value = '';
+
     }
 );
 
 // ===============================
-// CARGAR IMÁGENES FIREBASE
+// CARGAR FIREBASE
 // ===============================
 
 async function cargarImagenesFirebase() {

@@ -237,3 +237,48 @@ nav {
   }
 
 }
+.upload-section {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  margin: 30px 0;
+
+}
+
+.upload-button {
+
+  padding: 15px 30px;
+
+  border-radius: 30px;
+
+  border: 2px solid #1e70bd;
+
+  background: #000;
+
+  color: #1e70bd;
+
+  font-size: 1rem;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+
+  box-shadow: 0 0 15px rgba(30,112,189,0.25);
+
+}
+
+.upload-button:hover {
+
+  background: #1e70bd;
+
+  color: white;
+
+  transform: scale(1.05);
+
+}

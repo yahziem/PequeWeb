@@ -1,57 +1,66 @@
-/* =========================================
-   PANTALLAS GRANDES
-========================================= */
+/* ===============================
+   TABLET
+================================ */
 
-@media (min-width: 1400px){
-
-    .gallery-container{
-        grid-template-columns:
-        repeat(auto-fit,minmax(320px,1fr));
-        max-width:1700px;
-        margin:auto;
-    }
-
-    .pdf-container{
-        max-width:1600px;
-    }
+@media screen and (max-width: 900px){
 
     header{
-        padding:30px;
+        position:relative;
+        padding:20px 15px;
+    }
+
+    nav{
+        width:100%;
+    }
+
+    nav ul{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:10px;
     }
 
     .boton-elegante{
-        font-size:1.05rem;
+        flex:1 1 45%;
+        min-width:140px;
     }
-}
-
-/* =========================================
-   LAPTOPS
-========================================= */
-
-@media (max-width: 1200px){
 
     .gallery-container{
         grid-template-columns:
-        repeat(auto-fit,minmax(250px,1fr));
+        repeat(2,1fr);
+        padding:18px;
+        gap:18px;
     }
 
     iframe{
-        height:850px;
+        height:650px;
     }
 }
 
-/* =========================================
-   TABLETS
-========================================= */
+/* ===============================
+   CELULAR
+================================ */
 
-@media (max-width: 900px){
+@media screen and (max-width: 600px){
 
     body{
         overflow-x:hidden;
     }
 
     header{
+        padding:15px 10px;
         gap:15px;
+    }
+
+    .logo{
+        width:100%;
+        display:flex;
+        justify-content:center;
+    }
+
+    .logo img{
+        width:70px;
+        height:70px;
     }
 
     nav{
@@ -60,142 +69,131 @@
 
     nav ul{
         width:100%;
-        display:grid;
-        grid-template-columns:repeat(2,1fr);
-        gap:12px;
+        display:flex;
+        flex-direction:column;
+        gap:10px;
+        align-items:center;
     }
 
     .boton-elegante{
-        width:100%;
-        max-width:none;
+        width:95%;
+        max-width:320px;
+        padding:14px 12px;
         font-size:.95rem;
-        padding:14px 10px;
+        border-radius:16px;
     }
 
     .gallery-container{
-        padding:18px;
-        grid-template-columns:
-        repeat(auto-fit,minmax(220px,1fr));
+        width:100%;
+        padding:12px;
+        display:grid;
+        grid-template-columns:1fr;
+        gap:16px;
+    }
+
+    .gallery-item{
+        width:100%;
+    }
+
+    .img-container{
+        width:100%;
+        height:auto;
+        aspect-ratio:1/1;
+    }
+
+    .img-container img{
+        width:100%;
+        height:100%;
+        object-fit:cover;
     }
 
     .imagenes{
         flex-direction:column;
+        padding:15px;
+        gap:15px;
     }
 
     .imagenes img{
-        width:95%;
-    }
-
-    #quiz{
-        width:94%;
-    }
-
-    iframe{
-        width:95%;
-        height:700px;
-    }
-}
-
-/* =========================================
-   CELULARES
-========================================= */
-
-@media (max-width: 600px){
-
-    body{
-        overflow-x:hidden;
-    }
-
-    header{
-        position:relative;
-        padding:20px 12px;
-    }
-
-    .logo img{
-        width:75px;
-        height:75px;
-    }
-
-    nav ul{
-        grid-template-columns:1fr;
-    }
-
-    .boton-elegante{
         width:100%;
         border-radius:18px;
-        padding:14px;
-        font-size:.92rem;
-    }
-
-    .gallery-container{
-        padding:14px;
-        gap:16px;
-        grid-template-columns:1fr;
-    }
-
-    .gallery-item{
-        border-radius:18px;
-    }
-
-    .img-container{
-        aspect-ratio:1/1;
-    }
-
-    h1{
-        font-size:1.6rem;
-    }
-
-    h2{
-        font-size:1.3rem;
-        padding:0 10px;
     }
 
     #quiz{
+        width:95%;
+        margin:25px auto;
         padding:18px;
-        border-radius:20px;
+        border-radius:18px;
     }
 
     #question{
-        font-size:1.05rem;
+        font-size:1rem;
+        line-height:1.5;
     }
 
     #choices button,
     #submit{
-        font-size:.95rem;
+        width:100%;
         padding:14px;
+        font-size:.95rem;
+    }
+
+    .upload-section{
+        padding:0 12px;
     }
 
     .upload-button{
-        width:92%;
-        font-size:1rem;
+        width:100%;
+        padding:15px;
+        border-radius:18px;
     }
 
     .pdf-container{
         width:95%;
-        grid-template-columns:1fr;
+        display:flex;
+        flex-direction:column;
+        gap:18px;
     }
 
     .pdf-preview{
-        padding:14px;
+        width:100%;
+        padding:12px;
+    }
+
+    .pdf-preview embed{
+        height:240px;
     }
 
     iframe{
         width:95%;
-        height:500px;
+        height:450px;
         border-radius:18px;
     }
 
+    h1{
+        font-size:1.5rem;
+    }
+
+    h2{
+        font-size:1.2rem;
+        padding:0 10px;
+    }
+
     #cookie-banner{
+        padding:12px !important;
         font-size:12px !important;
-        padding:10px !important;
+    }
+
+    #cookie-banner button{
+        margin-top:8px;
+        width:100%;
     }
 }
 
-/* =========================================
-   CELULARES PEQUEÑOS
-========================================= */
+/* ===============================
+   CELULARES MUY PEQUEÑOS
+================================ */
 
-@media (max-width: 380px){
+@media screen and (max-width: 380px){
 
     .boton-elegante{
         font-size:.85rem;
@@ -203,19 +201,11 @@
     }
 
     .logo img{
-        width:65px;
-        height:65px;
-    }
-
-    h1{
-        font-size:1.4rem;
-    }
-
-    h2{
-        font-size:1.1rem;
+        width:60px;
+        height:60px;
     }
 
     iframe{
-        height:420px;
+        height:380px;
     }
 }

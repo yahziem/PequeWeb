@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="es">
 <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+<html lang="es">
 
 <head>
 
@@ -34,33 +34,32 @@
 
         </div>
 
-        <!-- NAV -->
         <nav>
 
             <button
                 class="boton-elegante"
-                onclick="location.href='inicio.html';"
+                onclick="location.href='inicio.html'"
             >
                 Inicio
             </button>
 
             <button
                 class="boton-elegante"
-                onclick="location.href='galeria.html';"
+                onclick="location.href='galeria.html'"
             >
                 Galería
             </button>
 
             <button
                 class="boton-elegante"
-                onclick="location.href='Canciones.html';"
+                onclick="location.href='Canciones.html'"
             >
                 Canciones
             </button>
 
             <button
                 class="boton-elegante"
-                onclick="location.href='Notas.html';"
+                onclick="location.href='Notas.html'"
             >
                 Notas
             </button>
@@ -69,24 +68,25 @@
 
     </header>
 
-<div class="upload-section">
+    <!-- BOTÓN SUBIR -->
+    <div class="upload-section">
 
-    <label
-        for="imageUpload"
-        class="upload-button"
-    >
-        📸 Subir Fotos
-    </label>
+        <button
+            id="uploadBtn"
+            class="upload-button"
+        >
+            📸 Subir Fotos
+        </button>
 
-    <input
-        type="file"
-        id="imageUpload"
-        accept="image/*"
-        multiple
-        hidden
-    >
+        <input
+            type="file"
+            id="imageUpload"
+            accept="image/*"
+            multiple
+            hidden
+        >
 
-</div>
+    </div>
 
     <!-- GALERÍA -->
     <div
@@ -94,7 +94,7 @@
         id="galleryContainer"
     ></div>
 
-    <!-- SCRIPT -->
+    <!-- JS -->
     <script
         type="module"
         src="Gl/JS/script.js"

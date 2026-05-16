@@ -1,6 +1,4 @@
-// ===============================
-// FIREBASE IMPORTS
-// ===============================
+// FIREBASE
 
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 
@@ -18,23 +16,27 @@ import {
     getDownloadURL
 } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-storage.js";
 
-// ===============================
-// CONFIG FIREBASE
-// ===============================
+// CONFIG
 
 const firebaseConfig = {
+
     apiKey: "AIzaSyAGLXh7unKGpJvBXKOMiqKuD2Fo21Ufuxc",
+
     authDomain: "peque-web.firebaseapp.com",
+
     projectId: "peque-web",
+
     storageBucket: "peque-web.firebasestorage.app",
+
     messagingSenderId: "673356201533",
+
     appId: "1:673356201533:web:1b4ab178a462bd2667b454",
+
     measurementId: "G-B4WZR9YY90"
+
 };
 
-// ===============================
-// INICIALIZAR FIREBASE
-// ===============================
+// INIT
 
 const app = initializeApp(firebaseConfig);
 
@@ -42,22 +44,18 @@ const db = getFirestore(app);
 
 const storage = getStorage(app);
 
-// ===============================
-// ELEMENTOS HTML
-// ===============================
+// HTML
 
 const galleryContainer =
     document.getElementById('galleryContainer');
 
-const imageUpload =
-    document.getElementById('imageUpload');
-
 const uploadBtn =
     document.getElementById('uploadBtn');
 
-// ===============================
-// IMÁGENES YA EXISTENTES
-// ===============================
+const imageUpload =
+    document.getElementById('imageUpload');
+
+// IMÁGENES EXISTENTES
 
 const imageUrls = [
 
@@ -104,9 +102,7 @@ const imageUrls = [
 
 ];
 
-// ===============================
-// CREAR IMAGEN
-// ===============================
+// CREAR FOTO
 
 function createGalleryItem(url) {
 
@@ -135,7 +131,7 @@ function createGalleryItem(url) {
 
     };
 
-    // CLICK ZOOM
+    // ZOOM
     imgContainer.addEventListener(
         'click',
         () => {
@@ -144,11 +140,19 @@ function createGalleryItem(url) {
                 imgContainer.classList.contains('enlarged')
             ) {
 
-                closeImage(imgContainer);
+                imgContainer.classList.remove('enlarged');
 
             } else {
 
-                openImage(imgContainer);
+                document
+                    .querySelectorAll('.img-container')
+                    .forEach(el => {
+
+                        el.classList.remove('enlarged');
+
+                    });
+
+                imgContainer.classList.add('enlarged');
 
             }
 
@@ -163,67 +167,7 @@ function createGalleryItem(url) {
 
 }
 
-// ===============================
-// ABRIR IMAGEN
-// ===============================
-
-function openImage(container) {
-
-    closeAllImages();
-
-    container.classList.add('enlarged');
-
-}
-
-// ===============================
-// CERRAR IMAGEN
-// ===============================
-
-function closeImage(container) {
-
-    container.classList.remove('enlarged');
-
-}
-
-// ===============================
-// CERRAR TODAS
-// ===============================
-
-function closeAllImages() {
-
-    document
-        .querySelectorAll('.img-container.enlarged')
-        .forEach(img => {
-
-            img.classList.remove('enlarged');
-
-        });
-
-}
-
-// ===============================
-// CLICK FUERA
-// ===============================
-
-document.addEventListener('click', (e) => {
-
-    const enlarged =
-        document.querySelector('.img-container.enlarged');
-
-    if (
-        enlarged &&
-        !enlarged.contains(e.target)
-    ) {
-
-        closeImage(enlarged);
-
-    }
-
-});
-
-// ===============================
-// MOSTRAR IMÁGENES EXISTENTES
-// ===============================
+// MOSTRAR EXISTENTES
 
 imageUrls.forEach(url => {
 
@@ -231,9 +175,7 @@ imageUrls.forEach(url => {
 
 });
 
-// ===============================
-// PEDIR PIN
-// ===============================
+// PIN
 
 uploadBtn.addEventListener('click', () => {
 
@@ -241,10 +183,6 @@ uploadBtn.addEventListener('click', () => {
         '🔒 Ingresa el PIN\n\nPista: es el número de bloqueo de mi teléfono'
     );
 
-    // CANCELAR
-    if (pin === null) return;
-
-    // PIN INCORRECTO
     if (pin !== '0817') {
 
         alert('❌ PIN incorrecto');
@@ -253,14 +191,11 @@ uploadBtn.addEventListener('click', () => {
 
     }
 
-    // ABRIR SELECTOR
     imageUpload.click();
 
 });
 
-// ===============================
-// SUBIR IMÁGENES
-// ===============================
+// SUBIR
 
 imageUpload.addEventListener(
     'change',
@@ -270,32 +205,24 @@ imageUpload.addEventListener(
 
         for (const file of files) {
 
-            // VALIDAR
-            if (!file.type.startsWith('image/')) continue;
-
             try {
 
-                // NOMBRE
                 const fileName =
                     `${Date.now()}-${file.name}`;
 
-                // STORAGE
                 const storageRef = ref(
                     storage,
                     `galeria/${fileName}`
                 );
 
-                // SUBIR
                 await uploadBytes(
                     storageRef,
                     file
                 );
 
-                // URL
                 const downloadURL =
                     await getDownloadURL(storageRef);
 
-                // FIRESTORE
                 await addDoc(
                     collection(db, "imagenes"),
                     {
@@ -307,29 +234,20 @@ imageUpload.addEventListener(
                     }
                 );
 
-                // MOSTRAR
                 createGalleryItem(downloadURL);
 
             } catch (error) {
 
-                console.error(
-                    "Error al subir:",
-                    error
-                );
+                console.error(error);
 
             }
 
         }
 
-        // LIMPIAR
-        imageUpload.value = '';
-
     }
 );
 
-// ===============================
 // CARGAR FIREBASE
-// ===============================
 
 async function cargarImagenesFirebase() {
 
@@ -354,17 +272,10 @@ async function cargarImagenesFirebase() {
 
     } catch (error) {
 
-        console.error(
-            "Error cargando Firebase:",
-            error
-        );
+        console.error(error);
 
     }
 
 }
-
-// ===============================
-// INICIAR
-// ===============================
 
 cargarImagenesFirebase();

@@ -1,19 +1,18 @@
-// 1. CONFIGURACIÓN E INICIALIZACIÓN DE FIREBASE
+// 1. CONFIGURACIÓN E INICIALIZACIÓN DE FIREBASE (Con tus datos reales)
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
 import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-storage.js";
 
-// ⚠️ REEMPLAZA ESTO CON TUS DATOS REALES DE LA CONSOLA DE FIREBASE
 const firebaseConfig = {
-    apiKey: "TU_API_KEY",
-    authDomain: "TU_PROYECTO.firebaseapp.com",
-    projectId: "TU_PROYECTO",
-    storageBucket: "TU_PROYECTO.appspot.com",
-    messagingSenderId: "TU_SENDER_ID",
-    appId: "TU_APP_ID"
+    apiKey: "AIzaSyAGLXh7unKGpJvBXKOMiqKuD2Fo21Ufuxc",
+    authDomain: "peque-web.firebaseapp.com",
+    projectId: "peque-web",
+    storageBucket: "peque-web.firebasestorage.app", // Corrección aquí
+    messagingSenderId: "673356201533",
+    appId: "1:673356201533:web:1b4ab178a462bd2667b454"
 };
 
-// Inicializamos los servicios (¡Esto era lo que faltaba!)
+// Inicializamos los servicios
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
@@ -23,7 +22,7 @@ const galleryContainer = document.getElementById('galleryContainer');
 const uploadBtn = document.getElementById('uploadBtn');
 const imageUpload = document.getElementById('imageUpload');
 
-// 3. IMÁGENES EXISTENTES (HARDCODEADAS)
+// 3. IMÁGENES EXISTENTES (HARDCODEADAS DE GITHUB)
 const imageUrls = [
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/27.jfif',
     'https://raw.githubusercontent.com/yahziem/PequeWeb/main/Gl/fotos/29.jfif',
@@ -79,22 +78,18 @@ function createGalleryItem(url) {
     img.src = url;
     img.alt = 'Imagen de la galería';
 
-    // Manejo de error si la imagen no carga
     img.onerror = () => {
         img.src = 'https://via.placeholder.com/300?text=Error+al+cargar';
     };
 
-    // Evento de Zoom interactivo
-    imgContainer.addEventListener('click', (e) => {
-        // Evitamos que interfiera con otros clics si fuera necesario
+    imgContainer.addEventListener('click', () => {
         if (imgContainer.classList.contains('enlarged')) {
             imgContainer.classList.remove('enlarged');
         } else {
-            // Removemos el zoom de cualquier otra imagen abierta antes
             document.querySelectorAll('.img-container').forEach(el => {
                 el.classList.remove('enlarged');
             });
-            imgContainer.classList.add('enlarged');
+            imgContainer.add('enlarged');
         }
     });
 
@@ -122,40 +117,47 @@ imageUpload.addEventListener('change', async (event) => {
     const files = event.target.files;
     if (!files.length) return;
 
-    // Deshabilitar botón temporalmente para evitar doble envío
     uploadBtn.disabled = true;
     uploadBtn.innerText = 'Subiendo... ⏳';
+
+    let subidasConExito = 0;
 
     for (const file of files) {
         try {
             const fileName = `${Date.now()}-${file.name}`;
             const storageRef = ref(storage, `galeria/${fileName}`);
 
-            // 1. Subir el archivo físico a Storage
+            // 1. Subir a Storage
             await uploadBytes(storageRef, file);
 
-            // 2. Obtener la URL de descarga
+            // 2. Obtener URL
             const downloadURL = await getDownloadURL(storageRef);
 
-            // 3. Guardar la referencia de la URL en Firestore
+            // 3. Guardar en Firestore
             await addDoc(collection(db, "imagenes"), {
                 url: downloadURL,
                 fecha: new Date()
             });
 
-            // 4. Pintarla de inmediato en la pantalla
+            // 4. Mostrar en pantalla de inmediato
             createGalleryItem(downloadURL);
+            subidasConExito++;
 
         } catch (error) {
             console.error("Error al subir el archivo:", error);
-            alert("Hubo un problema al subir la imagen.");
+            alert(`Hubo un problema al subir el archivo: ${file.name}`);
         }
+    }
+
+    // Mensaje de éxito al terminar de procesar los archivos
+    if (subidasConExito > 0) {
+        alert(`¡🎉 Éxito! Se han subido ${subidasConExito} imagen(es) correctamente.`);
     }
 
     // Restaurar botón
     uploadBtn.disabled = false;
-    uploadBtn.innerText = 'Subir Imagen';
-    imageUpload.value = ''; // Resetear el input file
+    uploadBtn.innerText = '📸 Subir Fotos';
+    imageUpload.value = ''; 
 });
 
 // 8. CARGAR IMÁGENES DESDE FIREBASE (AL INICIAR)
@@ -173,5 +175,4 @@ async function cargarImagenesFirebase() {
     }
 }
 
-// Ejecutar la carga desde la base de datos
 cargarImagenesFirebase();

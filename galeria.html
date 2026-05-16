@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galería 😻</title>
     
-    <!-- El Favicon y los Estilos van SIEMPRE dentro del Head -->
     <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="style/styles.css">
 </head>
@@ -20,7 +19,6 @@
         </div>
 
         <nav>
-            <!-- Cambiados a etiquetas <a> por accesibilidad y semántica -->
             <a href="inicio.html" class="boton-elegante">Inicio</a>
             <a href="galeria.html" class="boton-elegante">Galería</a>
             <a href="Canciones.html" class="boton-elegante">Canciones</a>
@@ -34,16 +32,13 @@
             📸 Subir Fotos
         </button>
         
-        <!-- Input oculto que se activa mediante JS -->
         <input type="file" id="imageUpload" accept="image/*" multiple hidden>
     </div>
 
     <!-- CONTENEDOR DE LA GALERÍA -->
-    <!-- Aquí es donde tu JS inyectará dinámicamente las fotos -->
     <div class="gallery-container" id="galleryContainer"></div>
 
     <!-- UNICO SCRIPT DE JS (Módulo principal) -->
-    <!-- Toda la lógica y la config de Firebase se maneja acá adentro -->
     <script type="module" src="Gl/JS/script.js"></script>
 
 </body>
